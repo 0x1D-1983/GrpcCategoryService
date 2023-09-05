@@ -1,0 +1,10 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: postgres
+manifests:
+  rawYaml:
+    - k8s/postgres-configmap.yaml
+    - k8s/postgres-storage.yaml
+    - k8s/postgres-deployment.yaml
+    - k8s/postgres-service.yaml

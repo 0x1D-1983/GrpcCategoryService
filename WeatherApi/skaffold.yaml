@@ -1,0 +1,13 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: weatherapi
+build:
+  artifacts:
+    - image: weather.api
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - k8s/weather-api-deployment.yaml
+    - k8s/weather-api-service.yaml

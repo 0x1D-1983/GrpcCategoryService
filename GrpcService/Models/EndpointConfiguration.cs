@@ -1,0 +1,31 @@
+﻿//using System;
+//namespace GrpcService.Models
+//{
+//    public class EndpointConfiguration
+//    {
+//        public string Host { get; set; }
+//        public int? Port { get; set; }
+//        public string Scheme { get; set; }
+//        public string StoreName { get; set; }
+//        public string StoreLocation { get; set; }
+//        public string FilePath { get; set; }
+//        public string Password { get; set; }
+//    }
+//}
+
+//"HttpServer": {
+//    "Endpoints": {
+//        "Http": {
+//            "Host": "localhost",
+//        "Port": 80,
+//        "Scheme": "http"
+//        },
+//      "Https": {
+//            "Host": "localhost",
+//        "Port": 443,
+//        "Scheme": "https",
+//        "FilePath": "/GrpcService.pfx",
+//        "Password": "alma"
+//      }
+//    }
+//}

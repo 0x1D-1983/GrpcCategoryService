@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: grpc-api
+  template:
+    metadata:
+      labels:
+        app: grpc-api
+    spec:
+      containers:
+        - name: grpc-api
+          image: grpc.category.api
+          ports:
+            - containerPort: 1080
+          envFrom:
+            - configMapRef:
+                name: grpc-api-config
+          # volumeMounts:
+          #   - mountPath: /root/.microsoft/usersecrets
+          #     name: usersecrets
+          #     readOnly: true
+          #   - mountPath: /root/.aspnet/https
+          #     name: https
+          #     readOnly: true
+          # env:
+          # - name: PORT
+          #   value: "443"
+          resources:
+            requests:
+              cpu: 50m
+              ephemeral-storage: 128Mi
+              memory: 128Mi
+          readinessProbe:
+            grpc:
+              port: 1080
+            initialDelaySeconds: 1
+            periodSeconds: 5
+      # volumes:
+      #   - name: usersecrets
+      #     hostPath:
+      #       path: /Users/oxid/.microsoft/usersecrets
+      #       type: Directory
+      #   - name: https
+      #     hostPath:
+      #       path: /Users/oxid/.aspnet/https
+      #       type: Directory

@@ -1,0 +1,9 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: grpccategoryservice
+requires:
+- path: ./postgres
+- path: ./GrpcService
+- path: ./WeatherApi
+- path: ./envoy

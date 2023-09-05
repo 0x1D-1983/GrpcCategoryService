@@ -1,0 +1,59 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: weather-api
+  template:
+    metadata:
+      labels:
+        app: weather-api
+    spec:
+      containers:
+        - name: weather-api
+          image: weather.api
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+            - name: ASPNETCORE_URLS
+              # value: "https://+;http://+"
+              value: "http://+"
+            # - name: HttpServer__Endpoints__Https__FilePath
+            #   value: "/root/.aspnet/https/WeatherApi.pfx"
+            # - name: HttpServer__Endpoints__Https__Host
+            #   value: "weather-api.default.svc.cluster.local"
+          # envFrom:
+          #   - configMapRef:
+          #       name: weather-api-config
+          # volumeMounts:
+          #   - mountPath: /root/.microsoft/usersecrets
+          #     name: usersecrets
+          #     readOnly: true
+          #   - mountPath: /root/.aspnet/https
+          #     name: https
+          #     readOnly: true
+          resources:
+            requests:
+              cpu: 50m
+              ephemeral-storage: 128Mi
+              memory: 128Mi
+          # readinessProbe:
+          #   grpc:
+          #     port: 443
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 30
+      # volumes:
+      #   - name: usersecrets
+      #     hostPath:
+      #       path: /Users/oxid/.microsoft/usersecrets
+      #       type: Directory
+      #   - name: https
+      #     hostPath:
+      #       path: /Users/oxid/.aspnet/https
+      #       type: Directory

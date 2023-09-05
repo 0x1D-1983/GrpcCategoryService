@@ -1,0 +1,14 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: grpc-api
+build:
+  artifacts:
+    - image: grpc.category.api
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - k8s/grpc-api-configmap.yaml
+    - k8s/grpc-api-deployment.yaml
+    - k8s/grpc-api-service.yaml
